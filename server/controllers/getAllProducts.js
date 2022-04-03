@@ -1,8 +1,8 @@
-const getAllProductsDB = require('../database/queries/getAllProducts');
-const { customizedError } = require('../utils/customizedError');
+const { getAllProductsQuery } = require('../database/queries');
+const customizedError = require('../utils/customizedError');
 
 const getAllProducts = (req, res, next) => {
-  getAllProductsDB()
+  getAllProductsQuery()
     .then(({ rows, rowCount }) => {
       if (rowCount) {
         res.status(200).json({ success: true, data: rows });
