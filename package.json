@@ -1,0 +1,35 @@
+{
+  "name": "blue-shop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=start node server/index.js",
+    "dev": " cross-env NODE_ENV=dev nodemon server/index.js",
+    "client": "cd client && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GSG-G11/Blue-Shop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GSG-G11/Blue-Shop/issues"
+  },
+  "homepage": "https://github.com/GSG-G11/Blue-Shop#readme",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cross-env": "^7.0.3",
+    "env2": "^2.2.2",
+    "express": "^4.17.3",
+    "pg": "^8.7.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.12.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "nodemon": "^2.0.15"
+  }
+}
