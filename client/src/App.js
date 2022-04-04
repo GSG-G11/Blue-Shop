@@ -1,18 +1,31 @@
 import { Component } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import axios from 'axios';
 import './App.css';
 import Nav from './component/Nav';
 import Landing from './component/Landing';
 import Login from './component/Login/Login';
-
+import Cart from './component/cart/Cart';
 class App extends Component {
   state = {
     max: 9.99,
     min: 2.2,
-    category: 'mens clothing',
+    category: 'all',
     logged: false,
-    name:''
+    name:'',
+    products: [],
+    
+    errorMessage: '',
   };
+  componentDidMount() {
+    axios
+      .get('http://localhost:8080/api/v1/products')
+      .then((res) => this.setState({ products: res.data.data }))
+      .catch((err) => this.setState({ errorMessage: err.response.statusText }));
+      const user = JSON.parse( localStorage.getItem('user')) || []
+      this.setState({logged: user.length===0 ? false:true })
+     
+  }
 
   onSetValue = (e) => {
     e.preventDefault();
@@ -23,10 +36,6 @@ class App extends Component {
   setCategory = ({ target }) => {
     this.setState({ category: target.value });
   };
-  componentDidMount(){
-    const user = JSON.parse( localStorage.getItem('user')) || []
-    this.setState({logged: user.length===0 ? false:true })
-  }
   login = (e) => {
     e.preventDefault();
     const user = {name : this.state.username , password:this.state.password }
@@ -35,13 +44,20 @@ class App extends Component {
   };
 
   inputChangeHandler = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.id });
   };
 
+  addToCart = (e) =>{
+    const products = JSON.parse(localStorage.getItem("products"))||[];
+    products.push(e)
+    const newProduct = JSON.stringify(products);
+      localStorage.setItem("products",newProduct);
+  }
   render() {
     const actions = {
       setCategory: this.setCategory,
       onSetValue: this.onSetValue,
+      add:this.addToCart
     };
 
     return (
@@ -64,7 +80,7 @@ class App extends Component {
                 />
               }
             />
-            <Route path='/cart' element={<h1>Cart</h1>} />
+            <Route path='/cart' element={<Cart products={this.state.products} />} />
             <Route path='/product/:id' element={<h1>Product</h1>} />
             <Route path='/add-product' element={<h1>Add product</h1>} />
           </Routes>
