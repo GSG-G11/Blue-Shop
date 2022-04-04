@@ -1,11 +1,11 @@
 import React from 'react';
-import axios from 'axios';
+
 
 class Card extends React.Component {
 
   render() {
     const { min, max, category,addProduct,products } = this.props;
-    // const { products } = this.state;
+   
     return products.length ? (
       products
         .filter(
@@ -18,7 +18,7 @@ class Card extends React.Component {
         .map((element) => {
           return (
             <>
-              <div className="card">
+              <div className="card" >
                 <img
                   className="card-image"
                   src={element.image}
