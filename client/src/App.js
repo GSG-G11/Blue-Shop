@@ -18,9 +18,9 @@ this.setState({ max: e.target.max.value,min: e.target.min.value });
 
 }
 
-  setMaxPrice = ({ target }) => {
-    console.log(target.value, 'max');
-    this.setState({ max: target.value });
+setCategory = ({ target }) => {
+    
+    this.setState({ category: target.value });
   };
 
   render() {
