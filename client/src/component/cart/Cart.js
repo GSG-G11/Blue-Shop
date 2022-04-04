@@ -1,11 +1,12 @@
 import React from "react";
 
 
-const Cart= ()=>{
+
+const Cart= (props)=>{
 
 const productsLs = JSON.parse(localStorage.getItem("products"))||[];
 
-
+const {deleteProduct} = props;
 
     return (
         <>
@@ -19,7 +20,7 @@ const productsLs = JSON.parse(localStorage.getItem("products"))||[];
                 />
                 <h1 className="card-name">{product.name}</h1>
                 <p className="card-price">{product.price}</p>
-              
+              <button className="delete-btn" id={product.id} onClick={()=>deleteProduct(product.id)}>delete</button>
               </div>
 
 
