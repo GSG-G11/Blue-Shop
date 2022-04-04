@@ -26,7 +26,7 @@ class Card extends React.Component {
                 />
                 <h1 className="card-name">{element.name}</h1>
                 <p className="card-price">{element.price}</p>
-                <button className="add-btn" id={element.id} onClick={addProduct}>+ Add to cart</button>
+                <button className="add-btn" id={element.id} onClick={(e)=>{addProduct(element)}}>+ Add to cart</button>
               </div>
             </>
           );

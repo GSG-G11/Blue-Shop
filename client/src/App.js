@@ -14,6 +14,7 @@ class App extends Component {
     logged: false,
     name:'',
     products: [],
+    
     errorMessage: '',
   };
   componentDidMount() {
@@ -23,6 +24,7 @@ class App extends Component {
       .catch((err) => this.setState({ errorMessage: err.response.statusText }));
       const user = JSON.parse( localStorage.getItem('user')) || []
       this.setState({logged: user.length===0 ? false:true })
+     
   }
 
   onSetValue = (e) => {
@@ -47,8 +49,8 @@ class App extends Component {
 
   addToCart = (e) =>{
     const products = JSON.parse(localStorage.getItem("products"))||[];
-    console.log(e.target)
-    const newProduct = JSON.stringify([...products,e.target.id]);
+    products.push(e)
+    const newProduct = JSON.stringify(products);
       localStorage.setItem("products",newProduct);
   }
   render() {
