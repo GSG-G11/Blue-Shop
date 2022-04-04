@@ -12,9 +12,9 @@ class App extends Component {
     min: 2.2,
     category: 'all',
     logged: false,
-    name:'',
+    name: '',
     products: [],
-    
+    deleteMessage: '',
     errorMessage: '',
   };
   componentDidMount() {
@@ -22,9 +22,8 @@ class App extends Component {
       .get('http://localhost:8080/api/v1/products')
       .then((res) => this.setState({ products: res.data.data }))
       .catch((err) => this.setState({ errorMessage: err.response.statusText }));
-      const user = JSON.parse( localStorage.getItem('user')) || []
-      this.setState({logged: user.length===0 ? false:true })
-     
+    const user = JSON.parse(localStorage.getItem('user')) || [];
+    this.setState({ logged: user.length === 0 ? false : true });
   }
 
   onSetValue = (e) => {
@@ -38,39 +37,48 @@ class App extends Component {
   };
   login = (e) => {
     e.preventDefault();
-    const user = {name : this.state.username , password:this.state.password }
+    const user = { name: this.state.username, password: this.state.password };
     localStorage.setItem('user', JSON.stringify(user));
-    this.setState({logged:true})
+    this.setState({ logged: true });
   };
 
   inputChangeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.id });
   };
 
-  addToCart = (e) =>{
-    const products = JSON.parse(localStorage.getItem("products"))||[];
-    products.push(e)
+  addToCart = (e) => {
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+    products.push(e);
     const newProduct = JSON.stringify(products);
-      localStorage.setItem("products",newProduct);
-  }
+    localStorage.setItem('products', newProduct);
+  };
+
+  deleteProduct = (id) => {
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+    const newArr = products.filter((e) => e.id !== id);
+    localStorage.setItem('products', JSON.stringify(newArr));
+    this.setState({ deleteMessage: 'Product deleted' });
+  };
+
   render() {
     const actions = {
       setCategory: this.setCategory,
       onSetValue: this.onSetValue,
-      add:this.addToCart
+      add: this.addToCart,
     };
 
     return (
-      <div className='App'>
+      <div className="App">
+      <h1>{this.state.deleteMessage}</h1>
         <Router>
           <Nav logged={this.state.logged} />
           <Routes>
             <Route
-              path='/'
+              path="/"
               element={<Landing actions={actions} values={this.state} />}
             />
             <Route
-              path='/login'
+              path="/login"
               element={
                 <Login
                   action={{
@@ -80,9 +88,17 @@ class App extends Component {
                 />
               }
             />
-            <Route path='/cart' element={<Cart products={this.state.products} />} />
-            <Route path='/product/:id' element={<h1>Product</h1>} />
-            <Route path='/add-product' element={<h1>Add product</h1>} />
+            <Route
+              path="/cart"
+              element={
+                <Cart
+                  products={this.state.products}
+                  deleteProduct={this.deleteProduct}
+                />
+              }
+            />
+            <Route path="/product/:id" element={<h1>Product</h1>} />
+            <Route path="/add-product" element={<h1>Add product</h1>} />
           </Routes>
         </Router>
       </div>
