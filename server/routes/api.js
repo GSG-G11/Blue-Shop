@@ -1,4 +1,5 @@
 const express = require('express');
+
 const { getAllProducts, addProduct, deleteProduct } = require('../controllers');
 
 const apiRouter = express.Router();
