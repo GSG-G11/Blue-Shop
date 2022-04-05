@@ -6,6 +6,10 @@ import Nav from './component/Nav';
 import Landing from './component/Landing';
 import Login from './component/Login/Login';
 import Cart from './component/cart/Cart';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import SweetAlert from 'sweetalert-react';
+
 class App extends Component {
   state = {
     max: 9.99,
@@ -15,6 +19,7 @@ class App extends Component {
     name: '',
     products: [],
     deleteMessage: '',
+    show: false,
     errorMessage: '',
   };
   componentDidMount() {
@@ -28,7 +33,7 @@ class App extends Component {
 
   onSetValue = (e) => {
     e.preventDefault();
-
+    console.log(e.target.max.value, e.target.min.value);
     this.setState({ max: e.target.max.value, min: e.target.min.value });
   };
 
@@ -54,11 +59,13 @@ class App extends Component {
   };
 
   deleteProduct = (id) => {
+    console.log(id);
     const products = JSON.parse(localStorage.getItem('products')) || [];
     const newArr = products.filter((e) => e.id !== id);
     localStorage.setItem('products', JSON.stringify(newArr));
     this.setState({ deleteMessage: 'Product deleted' });
   };
+  confirmDelete = () => this.setState({ show: true });
 
   render() {
     const actions = {
@@ -66,19 +73,17 @@ class App extends Component {
       onSetValue: this.onSetValue,
       add: this.addToCart,
     };
-
     return (
-      <div className="App">
-      <h1>{this.state.deleteMessage}</h1>
+      <div className='App'>
         <Router>
           <Nav logged={this.state.logged} />
           <Routes>
             <Route
-              path="/"
+              path='/'
               element={<Landing actions={actions} values={this.state} />}
             />
             <Route
-              path="/login"
+              path='/login'
               element={
                 <Login
                   action={{
@@ -89,16 +94,22 @@ class App extends Component {
               }
             />
             <Route
-              path="/cart"
+              path='/cart'
               element={
                 <Cart
                   products={this.state.products}
                   deleteProduct={this.deleteProduct}
+                  confirm={this.confirmDelete}
                 />
               }
             />
-            <Route path="/product/:id" element={<h1>Product</h1>} />
-            <Route path="/add-product" element={<h1>Add product</h1>} />
+            <Route path='/product/:id' element={<h1>Product</h1>} />
+            <Route
+              path='/cart'
+              element={<Cart products={this.state.products} />}
+            />
+            <Route path='/product/:id' element={<h1>Product</h1>} />
+            <Route path='/add-product' element={<h1>Add product</h1>} />
           </Routes>
         </Router>
       </div>

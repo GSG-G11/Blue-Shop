@@ -1,0 +1,10 @@
+.landing{
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+.card-container{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+}
