@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import Nav from './component/navbar/Nav';
-import Landing from './component/Landing';
+import Landing from './component/landing/Landing';
 import Login from './component/Login/Login';
 import Cart from './component/cart/Cart';
 import AddProduct from './component/addProduct/AddProduct';

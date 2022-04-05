@@ -11,23 +11,23 @@ const categories = [
 const Category = ({ setCategory }) => {
   return (
     <>
-      <div className='category'>
-        <div className='category-header'>
+      <div className="category">
+        <div className="category-header">
           <h2>Categories</h2>
         </div>
-        <div className='category-body'>
+        <div className="category-body">
           <ul>
             {categories.map((category, index) => (
               <li>
                 <label key={index}>
                   <input
-                    type='radio'
-                    name='category'
+                    type="radio"
+                    name="category"
                     value={category}
                     key={index}
                     onChange={setCategory}
                   />
-                  {category}{' '}
+                  <span className="category-name">{category}</span>{' '}
                 </label>
               </li>
             ))}

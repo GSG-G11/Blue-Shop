@@ -1,21 +1,19 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Roboto;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Roboto;
 }
 .App {
-    padding: 20px;
-    background: #F1F1F1;
-    min-height: 100vh;
+  padding: 20px;
 }
-.landing{
-    margin: 0;
-    padding: 0;
-    display: flex;
+.landing {
+  margin: 0;
+  padding: 0;
+  display: flex;
 }
-.card-container{
-    width: 80%;
-    display: flex;
-    flex-wrap: wrap;
+.card-container {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
 }
