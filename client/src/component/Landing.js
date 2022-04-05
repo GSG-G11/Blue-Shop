@@ -3,7 +3,7 @@ import Card from './cards/Card';
 import Aside from './aside/Aside';
 function Landing({
   actions: { setCategory, onSetValue, add },
-  values: { min, max, category, products },
+  values: { min, max, category, products,search },
 }) {
   return (
     <div className='landing'>
@@ -12,6 +12,7 @@ function Landing({
         <Card
           min={min}
           max={max}
+          search={search}
           category={category}
           addProduct={add}
           products={products}

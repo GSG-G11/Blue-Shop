@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-function Nav({ logged }) {
+function Nav({ logged, action }) {
   return (
     <header>
       <nav>
@@ -10,7 +10,7 @@ function Nav({ logged }) {
         <ul>
           <li>
             <div className='nav-link'>
-              <input type='text' placeholder='search' />
+              <input type='text' name='search' onChange={action} placeholder='search'  />
             </div>
           </li>
           {logged ? (
