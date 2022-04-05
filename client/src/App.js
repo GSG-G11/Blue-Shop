@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
-import Nav from './component/Nav';
+import Nav from './component/navbar/Nav';
 import Landing from './component/Landing';
 import Login from './component/Login/Login';
 import Cart from './component/cart/Cart';
