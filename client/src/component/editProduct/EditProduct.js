@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import axios from 'axios';
-class AddProduct extends React.Component {
+import './editProduct.css'
+class UpdateProduct extends React.Component {
   state = {
     name: '',
     price: '',
@@ -8,33 +9,41 @@ class AddProduct extends React.Component {
     image: '',
     category: 'mens clothing',
     successMsg: '',
-  
+  isEdit:false,
   };
 
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
   };
 
-  AddProduct = (e) => {
+  editProduct = (e) => {
+    const { toggelEdit} =this.props
     e.preventDefault();
-    const { addProductToState } = this.props;
-    console.log(this.state);
+    const {element,updateProductFromState}=this.props;
+    
     axios
-      .post('http://localhost:8080/api/v1/product', this.state)
-      .then(() => addProductToState(this.state))
+      .put(`http://localhost:8080/api/v1/products/${element.id}`, this.state)
+      .then((res)=>{
+        updateProductFromState(element.id,res.data.data[0])
+      })
       .catch((err) => console.log(err));
+      
+      toggelEdit()
   };
 
   render() {
+    const {isEdit}=this.props;
+   
     return (
       <Fragment>
-        <div className="form-container">
-          <form className="add-form" onSubmit={this.AddProduct}>
+{isEdit ? 
+        <div className="update-container">
+          <form className="update-form" onSubmit={this.editProduct}>
             <label>
               Name:
               <input
                 type="text"
-                placeholder="...Add Name"
+                placeholder={this.props.element.name}
                 onChange={this.handleChange}
                 name="name"
               />
@@ -44,7 +53,7 @@ class AddProduct extends React.Component {
               Price:
               <input
                 type="number"
-                placeholder="... Add Price"
+                placeholder={this.props.element.price}
                 onChange={this.handleChange}
                 name="price"
               />
@@ -54,7 +63,7 @@ class AddProduct extends React.Component {
               Description:
               <input
                 type="text"
-                placeholder="...Add Description"
+                placeholder={this.props.element.description}
                 onChange={this.handleChange}
                 name="description"
               />
@@ -64,7 +73,7 @@ class AddProduct extends React.Component {
               image:
               <input
                 type="text"
-                placeholder="...Image Url"
+                placeholder={this.props.element.image}
                 onChange={this.handleChange}
                 name="image"
               />
@@ -76,15 +85,18 @@ class AddProduct extends React.Component {
               <option value="electronics">electronics</option>
               <option value="women clothing">women clothing</option>
             </select>
-            <button className="add-btn" type="submit">
+            <button className="add-btn" type="submit" >
               {' '}
               submit
             </button>
           </form>
-        </div>
+        </div>: null}
+
+
+
       </Fragment>
     );
   }
 }
 
-export default AddProduct;
+export default UpdateProduct;

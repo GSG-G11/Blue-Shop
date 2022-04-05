@@ -1,7 +1,24 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import UpdateProduct from '../editProduct/EditProduct';
 
 export class ProductPage extends Component {
+
+
+state={
+  isEdit:false
+}
+
+toggelEdit=()=>{
+
+this.setState((prevState)=>{
+  return {
+    isEdit:!prevState.isEdit
+  }
+
+})}
+
+
   deleteProduct = (id) => {
     const { deleteProductFromState } = this.props;
     axios
@@ -13,7 +30,7 @@ export class ProductPage extends Component {
   };
   render() {
     const id = window.location.pathname.split('/')[2];
-    const { products } = this.props;
+    const { products,updateProductFromState  } = this.props;
     return products
       .filter((element) => element.id === +id)
       .map((element) => {
@@ -39,7 +56,7 @@ export class ProductPage extends Component {
                   <p className="card-price">${element.price}</p>
                 </div>
                 <div className="btn-section">
-                  <button className="add-btn" id={element.id}>
+                  <button className="edit-btn" id={element.id} onClick={this.toggelEdit} > 
                     Edit
                   </button>
                   <button
@@ -54,6 +71,7 @@ export class ProductPage extends Component {
                 </div>
               </div>
             </div>
+            <UpdateProduct updateProductFromState={updateProductFromState} element={element} isEdit={this.state.isEdit} toggelEdit={this.toggelEdit} />
           </>
         );
       });
