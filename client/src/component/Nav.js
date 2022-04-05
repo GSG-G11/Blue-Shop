@@ -17,7 +17,7 @@ function Nav({ logged, action }) {
             <>
               <li>
                 <div className='nav-link'>
-                  <Link to={'/login'}>Add product</Link>
+                  <Link to={'/product'}>Add product</Link>
                 </div>
               </li>
               <li>

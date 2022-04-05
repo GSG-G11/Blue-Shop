@@ -8,6 +8,7 @@ import Login from './component/Login/Login';
 import Cart from './component/cart/Cart';
 import AddProduct from './component/addProduct/AddProduct';
 import ProductPage from './component/productpage/ProductPage';
+
 class App extends Component {
   state = {
     max: 1000000000000000,
@@ -19,7 +20,7 @@ class App extends Component {
     deleteMessage: '',
     show: false,
     errorMessage: '',
-    search:'',
+    search: '',
   };
   componentDidMount() {
     axios
@@ -49,7 +50,7 @@ class App extends Component {
     this.setState({ [e.target.name]: e.target.id });
   };
   inputSearchHandler = (e) => {
-    this.setState({ [e.target.name]: e.target.value});
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   addToCart = (e) => {
@@ -72,14 +73,23 @@ class App extends Component {
       return { products: prevState.products.filter((ele) => ele.id !== id) };
     });
   };
+  updateProductFromState = (id, updated) => {
+    console.log(id,updated)
+    this.setState((prevState) => {
+      
+      return {
+        products: prevState.products.map((ele) =>
+          ele.id === id ? updated : ele
+        ),
+      };
+    },()=>{console.log(this.state)});
+  };
 
   addProductToState = (newProduct) => {
     this.setState((prevState) => {
       return { products: [...prevState.products, newProduct] };
     });
   };
-
-
 
   render() {
     const actions = {
@@ -127,13 +137,14 @@ class App extends Component {
                 <ProductPage
                   products={this.state.products}
                   deleteProductFromState={this.deleteProductFromState}
+                  updateProductFromState={this.updateProductFromState}
                 />
               }
             />
             <Route
               path="/product"
               element={
-                <AddProduct  addProductToState={this.addProductToState}/>
+                <AddProduct addProductToState={this.addProductToState}  />
               }
             />
           </Routes>
