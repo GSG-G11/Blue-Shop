@@ -1,11 +1,9 @@
 import React from 'react';
-
-
+import './card.css';
+import { Link } from 'react-router-dom';
 class Card extends React.Component {
-
   render() {
-    const { min, max, category,addProduct,products } = this.props;
-   
+    const { min, max, category, addProduct, products } = this.props;
     return products.length ? (
       products
         .filter(
@@ -18,15 +16,33 @@ class Card extends React.Component {
         .map((element) => {
           return (
             <>
-              <div className="card" >
-                <img
-                  className="card-image"
-                  src={element.image}
-                  alt={element.name}
-                />
-                <h1 className="card-name">{element.name}</h1>
-                <p className="card-price">{element.price}</p>
-                <button className="add-btn" id={element.id} onClick={(e)=>{addProduct(element)}}>+ Add to cart</button>
+              <div className='card'>
+                <div className='card-img'>
+                  <img
+                    className='card-image'
+                    src={element.image}
+                    alt={element.name}
+                  />
+                </div>
+                <div className='card-body'>
+                  <div className='card-title'>
+                    <Link to={`/product/${element.id}`}>
+                      <h1 className='card-name'>{element.name}</h1>
+                    </Link>
+                  </div>
+                  <div className='actions'>
+                    <p className='card-price'>${element.price}</p>
+                    <button
+                      className='add-btn'
+                      id={element.id}
+                      onClick={(e) => {
+                        addProduct(element);
+                      }}
+                    >
+                      + Add to cart
+                    </button>
+                  </div>
+                </div>
               </div>
             </>
           );

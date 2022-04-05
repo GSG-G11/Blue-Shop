@@ -1,7 +1,7 @@
 const connection = require('../config/connection');
 
 const addProductQuery = ({
-  name, description, image, catagory: category, price,
+  name, description, image, category, price,
 }) => {
   const query = {
     text: 'INSERT INTO products (name, description, image, category, price) VALUES ($1, $2, $3, $4, $5) RETURNING *',

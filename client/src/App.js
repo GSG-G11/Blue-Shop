@@ -6,6 +6,7 @@ import Nav from './component/Nav';
 import Landing from './component/Landing';
 import Login from './component/Login/Login';
 import Cart from './component/cart/Cart';
+
 class App extends Component {
   state = {
     max: 9.99,
@@ -15,6 +16,7 @@ class App extends Component {
     name: '',
     products: [],
     deleteMessage: '',
+    show: false,
     errorMessage: '',
   };
   componentDidMount() {
@@ -28,7 +30,6 @@ class App extends Component {
 
   onSetValue = (e) => {
     e.preventDefault();
-
     this.setState({ max: e.target.max.value, min: e.target.min.value });
   };
 
@@ -59,6 +60,7 @@ class App extends Component {
     localStorage.setItem('products', JSON.stringify(newArr));
     this.setState({ deleteMessage: 'Product deleted' });
   };
+  confirmDelete = () => this.setState({ show: true });
 
   render() {
     const actions = {
@@ -66,19 +68,17 @@ class App extends Component {
       onSetValue: this.onSetValue,
       add: this.addToCart,
     };
-
     return (
-      <div className="App">
-      <h1>{this.state.deleteMessage}</h1>
+      <div className='App'>
         <Router>
           <Nav logged={this.state.logged} />
           <Routes>
             <Route
-              path="/"
+              path='/'
               element={<Landing actions={actions} values={this.state} />}
             />
             <Route
-              path="/login"
+              path='/login'
               element={
                 <Login
                   action={{
@@ -89,16 +89,22 @@ class App extends Component {
               }
             />
             <Route
-              path="/cart"
+              path='/cart'
               element={
                 <Cart
                   products={this.state.products}
                   deleteProduct={this.deleteProduct}
+                  confirm={this.confirmDelete}
                 />
               }
             />
-            <Route path="/product/:id" element={<h1>Product</h1>} />
-            <Route path="/add-product" element={<h1>Add product</h1>} />
+            <Route path='/product/:id' element={<h1>Product</h1>} />
+            <Route
+              path='/cart'
+              element={<Cart products={this.state.products} />}
+            />
+            <Route path='/product/:id' element={<h1>Product</h1>} />
+            <Route path='/add-product' element={<h1>Add product</h1>} />
           </Routes>
         </Router>
       </div>
