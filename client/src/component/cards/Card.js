@@ -1,19 +1,28 @@
 import React from 'react';
+<<<<<<< Updated upstream
 
+=======
+import './card.css';
+import { Link } from 'react-router-dom';
+>>>>>>> Stashed changes
 
 class Card extends React.Component {
 
   render() {
+<<<<<<< Updated upstream
     const { min, max, category,addProduct,products } = this.props;
    
+=======
+    const { min, max, category, addProduct, products, search } = this.props;
+    console.table(products)
+>>>>>>> Stashed changes
     return products.length ? (
       products
         .filter(
           (product) =>
-            (product.price > min &&
-              product.price < max &&
-              product.category === category) ||
-            category === 'all'
+            (product.category === category || category === 'all') &&
+            (product.price >= +min &&
+            product.price <= +max)&& product.name.toLowerCase().includes(search)
         )
         .map((element) => {
           return (

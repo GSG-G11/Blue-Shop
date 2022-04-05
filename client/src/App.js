@@ -8,14 +8,15 @@ import Login from './component/Login/Login';
 import Cart from './component/cart/Cart';
 class App extends Component {
   state = {
-    max: 9.99,
-    min: 2.2,
+    max: 1000000000000000,
+    min: 0,
     category: 'all',
     logged: false,
     name: '',
     products: [],
     deleteMessage: '',
     errorMessage: '',
+    search:'',
   };
   componentDidMount() {
     axios
@@ -45,6 +46,9 @@ class App extends Component {
   inputChangeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.id });
   };
+  inputSearchHandler = (e) => {
+    this.setState({ [e.target.name]: e.target.value});
+  };
 
   addToCart = (e) => {
     const products = JSON.parse(localStorage.getItem('products')) || [];
@@ -71,7 +75,7 @@ class App extends Component {
       <div className="App">
       <h1>{this.state.deleteMessage}</h1>
         <Router>
-          <Nav logged={this.state.logged} />
+          <Nav action={this.inputSearchHandler} logged={this.state.logged} />
           <Routes>
             <Route
               path="/"
