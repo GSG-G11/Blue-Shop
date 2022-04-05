@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 class Card extends React.Component {
   render() {
     const { min, max, category, addProduct, products } = this.props;
-    console.log(min , max);
     return products.length ? (
       products
         .filter(

@@ -6,9 +6,6 @@ import Nav from './component/Nav';
 import Landing from './component/Landing';
 import Login from './component/Login/Login';
 import Cart from './component/cart/Cart';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import SweetAlert from 'sweetalert-react';
 
 class App extends Component {
   state = {
@@ -33,7 +30,6 @@ class App extends Component {
 
   onSetValue = (e) => {
     e.preventDefault();
-    console.log(e.target.max.value, e.target.min.value);
     this.setState({ max: e.target.max.value, min: e.target.min.value });
   };
 
@@ -59,7 +55,6 @@ class App extends Component {
   };
 
   deleteProduct = (id) => {
-    console.log(id);
     const products = JSON.parse(localStorage.getItem('products')) || [];
     const newArr = products.filter((e) => e.id !== id);
     localStorage.setItem('products', JSON.stringify(newArr));
