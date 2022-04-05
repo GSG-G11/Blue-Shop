@@ -6,7 +6,8 @@ import Nav from './component/Nav';
 import Landing from './component/Landing';
 import Login from './component/Login/Login';
 import Cart from './component/cart/Cart';
-import AddProduct from './component/AddProduct/AddProduct';
+import AddProduct from './component/addProduct/AddProduct';
+import ProductPage from './component/productpage/ProductPage';
 class App extends Component {
   state = {
     max: 9.99,
@@ -62,6 +63,20 @@ class App extends Component {
   };
   confirmDelete = () => this.setState({ show: true });
 
+  deleteProductFromState = (id) => {
+    this.setState((prevState) => {
+      return { products: prevState.products.filter((ele) => ele.id !== id) };
+    });
+  };
+
+  addProductToState = (newProduct) => {
+    this.setState((prevState) => {
+      return { products: [...prevState.products, newProduct] };
+    });
+  };
+
+
+
   render() {
     const actions = {
       setCategory: this.setCategory,
@@ -69,16 +84,16 @@ class App extends Component {
       add: this.addToCart,
     };
     return (
-      <div className='App'>
+      <div className="App">
         <Router>
           <Nav logged={this.state.logged} />
           <Routes>
             <Route
-              path='/'
+              path="/"
               element={<Landing actions={actions} values={this.state} />}
             />
             <Route
-              path='/login'
+              path="/login"
               element={
                 <Login
                   action={{
@@ -89,7 +104,7 @@ class App extends Component {
               }
             />
             <Route
-              path='/cart'
+              path="/cart"
               element={
                 <Cart
                   products={this.state.products}
@@ -98,13 +113,25 @@ class App extends Component {
                 />
               }
             />
-            <Route path='/product/:id' element={<h1>Product</h1>} />
             <Route
-              path='/cart'
+              path="/cart"
               element={<Cart products={this.state.products} />}
             />
-            <Route path='/product/:id' element={<h1>Product</h1>} />
-            <Route path='/add-product' element={<AddProduct/>} />
+            <Route
+              path="/product/:id"
+              element={
+                <ProductPage
+                  products={this.state.products}
+                  deleteProductFromState={this.deleteProductFromState}
+                />
+              }
+            />
+            <Route
+              path="/product"
+              element={
+                <AddProduct  addProductToState={this.addProductToState}/>
+              }
+            />
           </Routes>
         </Router>
       </div>
