@@ -6,7 +6,7 @@ import Nav from './component/Nav';
 import Landing from './component/Landing';
 import Login from './component/Login/Login';
 import Cart from './component/cart/Cart';
-
+import AddProduct from './component/AddProduct/AddProduct';
 class App extends Component {
   state = {
     max: 9.99,
@@ -104,7 +104,7 @@ class App extends Component {
               element={<Cart products={this.state.products} />}
             />
             <Route path='/product/:id' element={<h1>Product</h1>} />
-            <Route path='/add-product' element={<h1>Add product</h1>} />
+            <Route path='/add-product' element={<AddProduct/>} />
           </Routes>
         </Router>
       </div>
