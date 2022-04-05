@@ -27,7 +27,7 @@ class Card extends React.Component {
                 <div className='card-body'>
                   <div className='card-title'>
                     <Link to={`/product/${element.id}`}>
-                      <h1 className='card-name'>{element.name}</h1>
+                      <p className='card-name'>{element.name}</p>
                     </Link>
                   </div>
                   <div className='actions'>

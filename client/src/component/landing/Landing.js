@@ -1,17 +1,15 @@
 import React from 'react';
 import Card from '../cards/Card';
 import Aside from '../aside/Aside';
-import './style.css';
+import './style.css'
 function Landing({
   actions: { setCategory, onSetValue, add },
-  values: { min, max, category, products, search },
+  values: { min, max, category, products,search },
 }) {
   return (
-    <div className="landing">
-      <div className="aside-container">
-        <Aside setCategory={setCategory} onSet={onSetValue} />
-      </div>
-      <div className="card-container">
+    <div className='landing'>
+      <Aside setCategory={setCategory} onSet={onSetValue} />
+      <div className='card-container'>
         <Card
           min={min}
           max={max}

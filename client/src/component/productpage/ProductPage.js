@@ -3,21 +3,17 @@ import axios from 'axios';
 import UpdateProduct from '../editProduct/EditProduct';
 
 export class ProductPage extends Component {
+  state = {
+    isEdit: false,
+  };
 
-
-state={
-  isEdit:false
-}
-
-toggelEdit=()=>{
-
-this.setState((prevState)=>{
-  return {
-    isEdit:!prevState.isEdit
-  }
-
-})}
-
+  toggelEdit = () => {
+    this.setState((prevState) => {
+      return {
+        isEdit: !prevState.isEdit,
+      };
+    });
+  };
 
   deleteProduct = (id) => {
     const { deleteProductFromState } = this.props;
@@ -30,7 +26,7 @@ this.setState((prevState)=>{
   };
   render() {
     const id = window.location.pathname.split('/')[2];
-    const { products,updateProductFromState  } = this.props;
+    const { products, updateProductFromState } = this.props;
     return products
       .filter((element) => element.id === +id)
       .map((element) => {
@@ -48,15 +44,18 @@ this.setState((prevState)=>{
                 <div className="card-title">
                   <h1 className="card-name">{element.name}</h1>
                 </div>
-                <div className='description'>
-                    <p className='product-description'>{element.description}</p>
-
+                <div className="description">
+                  <p className="product-description">{element.description}</p>
                 </div>
                 <div className="actions">
                   <p className="card-price">${element.price}</p>
                 </div>
                 <div className="btn-section">
-                  <button className="edit-btn" id={element.id} onClick={this.toggelEdit} > 
+                  <button
+                    className="edit-btn"
+                    id={element.id}
+                    onClick={this.toggelEdit}
+                  >
                     Edit
                   </button>
                   <button
@@ -71,7 +70,14 @@ this.setState((prevState)=>{
                 </div>
               </div>
             </div>
-            <UpdateProduct updateProductFromState={updateProductFromState} element={element} isEdit={this.state.isEdit} toggelEdit={this.toggelEdit} />
+            {this.state.isEdit && (
+              <UpdateProduct
+                updateProductFromState={updateProductFromState}
+                element={element}
+                isEdit={this.state.isEdit}
+                toggelEdit={this.toggelEdit}
+              />
+            )}
           </>
         );
       });

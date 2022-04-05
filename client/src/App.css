@@ -6,14 +6,15 @@
 }
 .App {
   padding: 20px;
+  min-height: 100vh;
+  background: #F1F1F1;
 }
 .landing {
   margin: 0;
   padding: 0;
   display: flex;
 }
-.card-container {
-  width: 80%;
-  display: flex;
-  flex-wrap: wrap;
+a {
+  text-decoration: none;
 }
+
