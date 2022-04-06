@@ -29,7 +29,7 @@ export class ProductPage extends Component {
   };
   render() {
     const id = window.location.pathname.split('/')[2];
-    const { products, updateProductFromState } = this.props;
+    const { products, updateProductFromState, islogged } = this.props;
     return products
       .filter((element) => element.id === +id)
       .map((element) => {
@@ -53,24 +53,29 @@ export class ProductPage extends Component {
                 <div className="actions">
                   <p className="product-price">${element.price}</p>
                 </div>
-                <div className="btn-section">
-                  <button
-                    className="edit-btn"
-                    id={element.id}
-                    onClick={this.toggelEdit}
-                  >
-                    <FontAwesomeIcon icon={faPenToSquare} />
-                  </button>
-                  <button
-                    className="delete-btn"
-                    id={element.id}
-                    onClick={() => {
-                      this.deleteProduct(element.id);
-                    }}
-                  >
-                    <FontAwesomeIcon icon={faTrash} />
-                  </button>
-                </div>
+                {islogged ? (
+                  <>
+                    {' '}
+                    <div className="btn-section">
+                      <button
+                        className="edit-btn"
+                        id={element.id}
+                        onClick={this.toggelEdit}
+                      >
+                        <FontAwesomeIcon icon={faPenToSquare} />
+                      </button>
+                      <button
+                        className="delete-btn"
+                        id={element.id}
+                        onClick={() => {
+                          this.deleteProduct(element.id);
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faTrash} />
+                      </button>
+                    </div>
+                  </>
+                ) : null}
               </div>
             </div>
             {this.state.isEdit && (

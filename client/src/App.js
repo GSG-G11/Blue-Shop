@@ -1,12 +1,14 @@
 import { Component } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import Nav from './component/navbar/Nav';
 import Landing from './component/landing/Landing';
 import Login from './component/Login/Login';
 import Cart from './component/cart/Cart';
-import AddProduct from './component/AddProduct/AddProduct';
+import AddProduct from './component/addProduct/AddProduct';
 import ProductPage from './component/productpage/ProductPage';
 import NotFound from './component/Errors/NotFound';
 
@@ -22,18 +24,28 @@ class App extends Component {
     show: false,
     errorMessage: '',
     search: '',
-    username:'',
-    password:'',
+    username: '',
+    password: '',
     loggedUser: '',
-    toDeleteId:0,
+    toDeleteId: 0,
+    productsLSLength: 0,
   };
   componentDidMount() {
     axios
       .get('/api/v1/products')
-      .then((res) => this.setState({ products: res.data.data, errorMessage:'' }))
+      .then((res) =>
+        this.setState({ products: res.data.data, errorMessage: '' })
+      )
       .catch((err) => this.setState({ errorMessage: err.response.statusText }));
     const user = JSON.parse(localStorage.getItem('user')) || [];
-    this.setState({ logged: user.length === 0 ? false : true, loggedUser: user.name });
+    this.setState({
+      logged: user.length === 0 ? false : true,
+      loggedUser: user.name,
+    });
+    const productsLS = localStorage.getItem('products');
+    if(productsLS) {
+      this.setState({ productsLSLength: JSON.parse(productsLS).length });
+    }
   }
 
   onSetValue = (e) => {
@@ -48,7 +60,7 @@ class App extends Component {
     e.preventDefault();
     const user = { name: this.state.username, password: this.state.password };
     localStorage.setItem('user', JSON.stringify(user));
-    this.setState({ logged: true });
+    this.setState({ logged: true, loggedUser: this.state.username });
   };
 
   inputChangeHandler = (e) => {
@@ -57,22 +69,28 @@ class App extends Component {
   inputSearchHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
+  addSuccessMsgToCart = () => {
+    toast.success('Product was Added successfully To cart !', {
+      position: toast.POSITION.TOP_CENTER,
+    });
+  };
 
   addToCart = (e) => {
     const products = JSON.parse(localStorage.getItem('products')) || [];
     products.push(e);
     const newProduct = JSON.stringify(products);
     localStorage.setItem('products', newProduct);
+    this.setState({ productsLSLength: products.length });
+    this.addSuccessMsgToCart();
   };
 
   deleteProduct = (id) => {
-    console.log(id);
     const products = JSON.parse(localStorage.getItem('products')) || [];
     const newArr = products.filter((e) => e.id !== +id);
     localStorage.setItem('products', JSON.stringify(newArr));
     this.setState({ deleteMessage: 'Product deleted', show: false });
   };
-  confirmDelete = (e) => this.setState({ show: true , toDeleteId: e.target.id});
+  confirmDelete = (e) => this.setState({ show: true, toDeleteId: e.target.id });
   hide = () => this.setState({ show: false });
 
   deleteProductFromState = (id) => {
@@ -104,7 +122,7 @@ class App extends Component {
   logOut = () => {
     localStorage.removeItem('user');
     this.setState({ logged: false });
-  }
+  };
 
   render() {
     const actions = {
@@ -114,8 +132,14 @@ class App extends Component {
     };
     return (
       <div className="App">
-        <Router basename='/'>
-          <Nav action={this.inputSearchHandler} logOut={this.logOut} loggedUser={this.state.loggedUser && this.state.loggedUser} logged={this.state.logged} />
+        <Router basename="/">
+          <Nav
+            action={this.inputSearchHandler}
+            logOut={this.logOut}
+            loggedUser={this.state.loggedUser && this.state.loggedUser}
+            logged={this.state.logged}
+            productsLSLength={this.state.productsLSLength}
+          />
           <Routes>
             <Route
               path="/"
@@ -156,6 +180,7 @@ class App extends Component {
                   products={this.state.products}
                   deleteProductFromState={this.deleteProductFromState}
                   updateProductFromState={this.updateProductFromState}
+                  islogged={this.state.logged}
                 />
               }
             />
@@ -165,13 +190,9 @@ class App extends Component {
                 <AddProduct addProductToState={this.addProductToState} />
               }
             />
-            <Route
-              path="*"
-              element={
-                <NotFound  />
-              }
-            />
+            <Route path="*" element={<NotFound />} />
           </Routes>
+          <ToastContainer />
         </Router>
       </div>
     );

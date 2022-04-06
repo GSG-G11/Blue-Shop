@@ -1,14 +1,16 @@
-import React from "react";
-import "./card.css";
-import { Link } from "react-router-dom";
+import React from 'react';
+import './card.css';
+import { Link } from 'react-router-dom';
+
 class Card extends React.Component {
   render() {
-    const { min, max, category, addProduct, products, search ,logged} = this.props;
+    const { min, max, category, addProduct, products, search, logged } =
+      this.props;
     return products.length ? (
       products
         .filter(
           (product) =>
-            (product.category === category || category === "all") &&
+            (product.category === category || category === 'all') &&
             product.price >= +min &&
             product.price <= +max &&
             product.name.toLowerCase().includes(search)
@@ -32,16 +34,17 @@ class Card extends React.Component {
                   </div>
                   <div className="actions">
                     <p className="card-price">${element.price}</p>
-                    {logged? null:<button
-                      className="add-btn"
-                      id={element.id}
-                      onClick={(e) => {
-                        addProduct(element);
-                      }}
-                    >
-                      + Add to cart
-                    </button>}
-
+                    {logged ? null : (
+                      <button
+                        className="add-btn"
+                        id={element.id}
+                        onClick={(e) => {
+                          addProduct(element);
+                        }}
+                      >
+                        + Add to cart
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>

@@ -1,16 +1,25 @@
-import React, { Fragment } from "react";
-import axios from "axios";
-import "./editProduct.css";
+import React, { Fragment } from 'react';
+import axios from 'axios';
+import './editProduct.css';
 class UpdateProduct extends React.Component {
   state = {
-    name: "",
-    price: "",
-    description: "",
-    image: "",
-    category: "mens clothing",
-    successMsg: "",
+    name: '',
+    price: '',
+    description: '',
+    image: '',
+    category: 'mens clothing',
+    successMsg: '',
   };
-
+  componentDidMount() {
+    const { element: {name, price, description, image, category} } = this.props;
+    this.setState({
+      name: name,
+      price: price,
+      description: description,
+      image: image,
+      category: category,
+    });
+  }
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
   };
@@ -39,7 +48,7 @@ class UpdateProduct extends React.Component {
                 Name:
                 <input
                   type="text"
-                  placeholder={this.props.element.name}
+                  value={this.state.name}
                   onChange={this.handleChange}
                   name="name"
                 />
@@ -50,7 +59,7 @@ class UpdateProduct extends React.Component {
                 Price:
                 <input
                   type="number"
-                  placeholder={this.props.element.price}
+                  value={this.state.price}
                   onChange={this.handleChange}
                   name="price"
                 />
@@ -61,7 +70,7 @@ class UpdateProduct extends React.Component {
                 Description:
                 <input
                   type="text"
-                  placeholder={this.props.element.description}
+                  value={this.state.description}
                   onChange={this.handleChange}
                   name="description"
                 />
@@ -72,7 +81,7 @@ class UpdateProduct extends React.Component {
                 image:
                 <input
                   type="text"
-                  placeholder={this.props.element.image}
+                  value={this.state.image}
                   onChange={this.handleChange}
                   name="image"
                 />
@@ -82,6 +91,7 @@ class UpdateProduct extends React.Component {
               className="select-category"
               name="category"
               onChange={this.handleChange}
+              value={this.state.category}
             >
               <option className="category-option" value="mens clothing">
                 mens clothing
@@ -97,8 +107,8 @@ class UpdateProduct extends React.Component {
               </option>
             </select>
             <button className="add-btn" type="submit">
-              {" "}
-              submit
+              {' '}
+              Edit
             </button>
           </form>
         </div>

@@ -33,8 +33,9 @@ class AddProduct extends React.Component {
       const data = { name, price, description, image, category };
       axios
         .post('/api/v1/product', data)
-        .then(() => {
-          addProductToState(data);
+        .then((res) => {
+          const { product } = res.data;
+          addProductToState(product);
           this.addSuccessMsg();
           this.setState({
             name: '',
