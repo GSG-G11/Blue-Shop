@@ -8,6 +8,7 @@ import Login from './component/Login/Login';
 import Cart from './component/cart/Cart';
 import AddProduct from './component/addProduct/AddProduct';
 import ProductPage from './component/productpage/ProductPage';
+import NotFound from './component/Errors/NotFound';
 
 class App extends Component {
   state = {
@@ -28,7 +29,7 @@ class App extends Component {
   componentDidMount() {
     axios
       .get('http://localhost:8080/api/v1/products')
-      .then((res) => this.setState({ products: res.data.data }))
+      .then((res) => this.setState({ products: res.data.data, errorMessage:'' }))
       .catch((err) => this.setState({ errorMessage: err.response.statusText }));
     const user = JSON.parse(localStorage.getItem('user')) || [];
     
@@ -159,6 +160,12 @@ class App extends Component {
               path="/product"
               element={
                 <AddProduct addProductToState={this.addProductToState} />
+              }
+            />
+            <Route
+              path="*"
+              element={
+                <NotFound  />
               }
             />
           </Routes>
