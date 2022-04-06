@@ -11,7 +11,7 @@ let ssl = false;
 if (NODE_ENV === 'dev') {
   dbURl = DEV_DB_URL;
 } else if (NODE_ENV === 'start') {
-  ssl = { rejectUnauthenticated: false };
+  ssl = { rejectUnauthorized: false };
 }
 
 const connection = new Pool({

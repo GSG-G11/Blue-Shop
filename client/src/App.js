@@ -29,7 +29,7 @@ class App extends Component {
   };
   componentDidMount() {
     axios
-      .get('http://localhost:8080/api/v1/products')
+      .get('/api/v1/products')
       .then((res) => this.setState({ products: res.data.data, errorMessage:'' }))
       .catch((err) => this.setState({ errorMessage: err.response.statusText }));
     const user = JSON.parse(localStorage.getItem('user')) || [];
@@ -114,7 +114,7 @@ class App extends Component {
     };
     return (
       <div className="App">
-        <Router>
+        <Router basename='/'>
           <Nav action={this.inputSearchHandler} logOut={this.logOut} loggedUser={this.state.loggedUser && this.state.loggedUser} logged={this.state.logged} />
           <Routes>
             <Route

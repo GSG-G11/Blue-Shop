@@ -1,4 +1,4 @@
-const { join } = require('path');
+const { join, resolve } = require('path');
 require('env2')('.env');
 const express = require('express');
 const compression = require('compression');
@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
-app.use(express.static(join(__dirname, '..', 'client', 'build', 'index.html')));
+app.use(express.static(join(__dirname, '..', 'client', 'build')));
 app.use(compression());
 app.set('port', process.env.PORT || 8080);
 

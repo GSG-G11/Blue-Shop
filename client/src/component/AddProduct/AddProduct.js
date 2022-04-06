@@ -32,7 +32,7 @@ class AddProduct extends React.Component {
     } else {
       const data = { name, price, description, image, category };
       axios
-        .post('http://localhost:8080/api/v1/product', data)
+        .post('/api/v1/product', data)
         .then(() => {
           addProductToState(data);
           this.addSuccessMsg();

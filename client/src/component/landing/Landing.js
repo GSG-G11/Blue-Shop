@@ -5,19 +5,19 @@ import './style.css';
 import ServerError from '../Errors/ServerError';
 function Landing({
   actions: { setCategory, onSetValue, add },
-  values: { min, max, category, products, search, errorMessage },
+  values: { min, max, category, products, search, errorMessage, logged },
   category: currentCategory,
 }) {
   return (
-    <div className='landing'>
-      { !errorMessage ? (
+    <div className="landing">
+      {!errorMessage ? (
         <>
           <Aside
             category={currentCategory}
             setCategory={setCategory}
             onSet={onSetValue}
           />
-          <div className='card-container'>
+          <div className="card-container">
             <Card
               min={min}
               max={max}
@@ -26,6 +26,7 @@ function Landing({
               addProduct={add}
               products={products}
               errorMessage={errorMessage}
+              logged={logged}
             />
           </div>
         </>
