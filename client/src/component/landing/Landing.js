@@ -4,7 +4,7 @@ import Aside from '../aside/Aside';
 import './style.css';
 function Landing({
   actions: { setCategory, onSetValue, add },
-  values: { min, max, category, products, search },
+  values: { min, max, category, products, search,logged },
   category: currentCategory,
 }) {
   return (
@@ -18,6 +18,7 @@ function Landing({
           category={category}
           addProduct={add}
           products={products}
+          logged={logged}
         />
       </div>
     </div>
