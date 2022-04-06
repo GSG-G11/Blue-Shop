@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './style.css';
 import UpdateProduct from '../editProduct/EditProduct';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export class ProductPage extends Component {
   state = {
@@ -32,23 +35,23 @@ export class ProductPage extends Component {
       .map((element) => {
         return (
           <>
-            <div className="card">
-              <div className="card-img">
+            <div className="product-product-container">
+              <div className="product-img">
                 <img
-                  className="card-image"
+                  className="product-image"
                   src={element.image}
                   alt={element.name}
                 />
               </div>
-              <div className="card-body">
-                <div className="card-title">
-                  <h1 className="card-name">{element.name}</h1>
+              <div className="product-info">
+                <div className="product-title">
+                  <h1 className="product-name">{element.name}</h1>
                 </div>
                 <div className="description">
                   <p className="product-description">{element.description}</p>
                 </div>
                 <div className="actions">
-                  <p className="card-price">${element.price}</p>
+                  <p className="product-price">${element.price}</p>
                 </div>
                 <div className="btn-section">
                   <button
@@ -56,16 +59,16 @@ export class ProductPage extends Component {
                     id={element.id}
                     onClick={this.toggelEdit}
                   >
-                    Edit
+                    <FontAwesomeIcon icon={faPenToSquare} />
                   </button>
                   <button
-                    className="add-btn"
+                    className="delete-btn"
                     id={element.id}
                     onClick={() => {
                       this.deleteProduct(element.id);
                     }}
                   >
-                    delete
+                    <FontAwesomeIcon icon={faTrash} />
                   </button>
                 </div>
               </div>

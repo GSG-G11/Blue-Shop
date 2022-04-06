@@ -74,15 +74,19 @@ class App extends Component {
     });
   };
   updateProductFromState = (id, updated) => {
-    console.log(id,updated)
-    this.setState((prevState) => {
-      
-      return {
-        products: prevState.products.map((ele) =>
-          ele.id === id ? updated : ele
-        ),
-      };
-    },()=>{console.log(this.state)});
+    console.log(id, updated);
+    this.setState(
+      (prevState) => {
+        return {
+          products: prevState.products.map((ele) =>
+            ele.id === id ? updated : ele
+          ),
+        };
+      },
+      () => {
+        console.log(this.state);
+      }
+    );
   };
 
   addProductToState = (newProduct) => {
@@ -144,7 +148,7 @@ class App extends Component {
             <Route
               path="/product"
               element={
-                <AddProduct addProductToState={this.addProductToState}  />
+                <AddProduct addProductToState={this.addProductToState} />
               }
             />
           </Routes>
