@@ -1,6 +1,6 @@
-import React from 'react';
-import './card.css';
-import { Link } from 'react-router-dom';
+import React from "react";
+import "./card.css";
+import { Link } from "react-router-dom";
 class Card extends React.Component {
   render() {
     const { min, max, category, addProduct, products, search } = this.props;
@@ -8,7 +8,7 @@ class Card extends React.Component {
       products
         .filter(
           (product) =>
-            (product.category === category || category === 'all') &&
+            (product.category === category || category === "all") &&
             product.price >= +min &&
             product.price <= +max &&
             product.name.toLowerCase().includes(search)
@@ -16,24 +16,24 @@ class Card extends React.Component {
         .map((element) => {
           return (
             <>
-              <div className='card'>
-                <div className='card-img'>
+              <div className="card">
+                <div className="card-img">
                   <img
-                    className='card-image'
+                    className="card-image"
                     src={element.image}
                     alt={element.name}
                   />
                 </div>
-                <div className='card-body'>
-                  <div className='card-title'>
+                <div className="card-body">
+                  <div className="card-title">
                     <Link to={`/product/${element.id}`}>
-                      <p className='card-name'>{element.name}</p>
+                      <p className="card-name">{element.name}</p>
                     </Link>
                   </div>
-                  <div className='actions'>
-                    <p className='card-price'>${element.price}</p>
+                  <div className="actions">
+                    <p className="card-price">${element.price}</p>
                     <button
-                      className='add-btn'
+                      className="add-btn"
                       id={element.id}
                       onClick={(e) => {
                         addProduct(element);
@@ -48,7 +48,9 @@ class Card extends React.Component {
           );
         })
     ) : (
-      <h1>there is no products</h1>
+      <div class="container">
+        <div class="loader"></div>
+      </div>
     );
   }
 }

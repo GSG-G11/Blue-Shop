@@ -21,6 +21,8 @@ class App extends Component {
     show: false,
     errorMessage: '',
     search: '',
+    username:'',
+    password:'',
   };
   componentDidMount() {
     axios
@@ -116,7 +118,7 @@ class App extends Component {
                 <Login
                   action={{
                     login: this.login,
-                    change: this.inputChangeHandler,
+                    change: this.inputSearchHandler,
                   }}
                 />
               }

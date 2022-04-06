@@ -42,7 +42,7 @@ function Nav({ logged, action }) {
               </div>
               {/* <p className="navbar-icon-text">Add Product</p> */}
             </Link>
-            <Link to={'/home'}>
+            <Link to={'/'}>
               <div className="navbar-icon-container">
                 <FontAwesomeIcon icon={faHouse} />
               </div>
