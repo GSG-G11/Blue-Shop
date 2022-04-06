@@ -1,0 +1,75 @@
+.form-container {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.add-form {
+  display: flex;
+  border-radius: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  background-color: white;
+  width: 477px;
+  padding: 20px;
+}
+.add-form .input-label-div {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 15px;
+}
+.add-form .input-label-div input {
+  height: 35px;
+  padding: 5px;
+  background-color: #f1f1f1;
+  border: none;
+  border-radius: 7px;
+}
+
+.add-form .input-label-div textarea {
+  height: 70px;
+  padding: 5px;
+  background-color: #f1f1f1;
+  border: none;
+  border-radius: 7px;
+}
+.add-section-btn {
+  display: flex;
+  align-self: flex-end;
+}
+
+.select-category {
+  width: 100%;
+  height: 35px;
+  padding: 5px;
+  background-color: #f1f1f1;
+  border: none;
+  border-radius: 7px;
+  text-transform: capitalize;
+
+}
+.category-option {
+  text-transform: capitalize;
+}
+.add-form .add-btn {
+  margin-top: 24px;
+  border: none;
+  height: 32px;
+  padding: 0 10px;
+  background: #518fd8;
+  cursor: pointer;
+  border-radius: 6px;
+  color: #fff;
+  transition-duration: 0.3s;
+}
+
+.add-form .add-btn:hover {
+  background: #4389da;
+}
+.add-form .error-message {
+  color: red;
+  font-size: 14px;
+}

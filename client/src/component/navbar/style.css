@@ -11,7 +11,7 @@
   border-radius: 6px;
 }
 .navbar .logo .logo-text {
-  top: 5px;
+  top: 0;
   position: absolute;
   width: 100px;
   left: 7px;
@@ -23,6 +23,7 @@
 .navbar .logo .logo-text .logo-text-blue {
   color: #518fd8;
   font-family: 'Segoe Script';
+  margin-left: 5px;
 }
 .navbar .logo {
   display: flex;
@@ -79,9 +80,8 @@
   text-align: center;
 }
 .navbar .navbar-actions .navbar-icon-container {
-  width: 30px;
+  width: 50px;
   height: 30px;
-
   background: #518fd8;
   border-radius: 5px;
   display: flex;
