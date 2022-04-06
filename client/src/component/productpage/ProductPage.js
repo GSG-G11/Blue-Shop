@@ -21,7 +21,7 @@ export class ProductPage extends Component {
   deleteProduct = (id) => {
     const { deleteProductFromState } = this.props;
     axios
-      .delete(`http://localhost:8080/api/v1/products/${id}`)
+      .delete(`/api/v1/products/${id}`)
       .then(() => deleteProductFromState(id))
       .catch((error) => {
         console.log(error);
