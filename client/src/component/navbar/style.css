@@ -107,6 +107,12 @@
     margin-bottom: 20px;
   }
 }
+.logged-user{
+  background-color:#518fd8 ;
+  color: #fff;
+  border-radius: 5px;
+  padding:0 8px;
+}
 @media (max-width: 576px) {
   .navbar .logo {
     margin-bottom: 20px;
