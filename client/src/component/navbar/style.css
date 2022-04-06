@@ -1,0 +1,94 @@
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.navbar .logo .logo-box {
+  width: 50px;
+  height: 30px;
+  background: #518fd8;
+  border-radius: 6px;
+}
+.navbar .logo .logo-text {
+  top: 0;
+  position: absolute;
+  width: 100px;
+  left: 7px;
+}
+.navbar .logo .logo-text .logo-text-white {
+  color: white;
+  font-family: 'Segoe Script';
+}
+.navbar .logo .logo-text .logo-text-blue {
+  color: #518fd8;
+  font-family: 'Segoe Script';
+  margin-left: 5px;
+}
+.navbar .logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+.navbar .navbar-search {
+  position: relative;
+}
+.navbar .navbar-search input {
+  width: 588px;
+  height: 32px;
+  background: #fafafa;
+  border: 1px solid #518fd8;
+  border-radius: 6px;
+  padding-left: 10px;
+}
+.navbar .navbar-search .search-icon-container {
+  background: #518fd8;
+  width: 30px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 0 6px 6px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.navbar .navbar-search .search-icon-container svg {
+  color: white;
+}
+
+.navbar .navbar-search input:focus-visible {
+  border: 1px solid #518fd8;
+  box-shadow: none;
+  outline: none;
+}
+.navbar .navbar-actions {
+  display: flex;
+  gap: 20px;
+}
+.navbar .navbar-actions .icon-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.navbar .navbar-actions .navbar-icon-text {
+  font-size: 12px;
+  text-align: center;
+}
+.navbar .navbar-actions .navbar-icon-container {
+  width: 50px;
+  height: 30px;
+  background: #518fd8;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.navbar .navbar-actions .navbar-icon-container svg {
+  color: #fff;
+}

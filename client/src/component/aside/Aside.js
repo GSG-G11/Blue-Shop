@@ -3,11 +3,11 @@ import './aside.css';
 import Price from './Price';
 import Category from './Category';
 
-const Aside = ({onSet, setCategory}) => {
+const Aside = ({ onSet, setCategory, category }) => {
   return (
-    <aside>
-    <Category setCategory={setCategory} />
-    <Price onSet={onSet} />
+    <aside className="aside-body">
+      <Category category={category} setCategory={setCategory} />
+      <Price onSet={onSet} />
     </aside>
   );
 };

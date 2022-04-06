@@ -15,4 +15,7 @@ app.set('port', process.env.PORT || 8080);
 
 app.use('/api/v1', apiRouter);
 
+app.get('*', (req, res) => {
+  res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
+});
 module.exports = app;

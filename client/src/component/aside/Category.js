@@ -8,30 +8,27 @@ const categories = [
   'women clothing',
 ];
 
-const Category = ({ setCategory }) => {
+const Category = ({ setCategory, category: currentCategory }) => {
   return (
     <>
-      <div className='category'>
-        <div className='category-header'>
+      <div className="category">
+        <div className="category-header">
           <h2>Categories</h2>
         </div>
-        <div className='category-body'>
-          <ul>
+        <div className="category-body">
             {categories.map((category, index) => (
-              <li>
-                <label key={index}>
+                <p key={index}>
                   <input
-                    type='radio'
-                    name='category'
+                    checked={category === currentCategory}
+                    type="radio"
+                    name="category"
                     value={category}
                     key={index}
                     onChange={setCategory}
                   />
-                  {category}{' '}
-                </label>
-              </li>
+                  <span className="category-name">{category}</span>{' '}
+                </p>
             ))}
-          </ul>
         </div>
       </div>
     </>

@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import axios from 'axios';
-import './editProduct.css'
+import './editProduct.css';
 class UpdateProduct extends React.Component {
   state = {
     name: '',
@@ -9,7 +9,6 @@ class UpdateProduct extends React.Component {
     image: '',
     category: 'mens clothing',
     successMsg: '',
-  isEdit:false,
   };
 
   handleChange = ({ target }) => {
@@ -17,26 +16,22 @@ class UpdateProduct extends React.Component {
   };
 
   editProduct = (e) => {
-    const { toggelEdit} =this.props
+    const { toggelEdit } = this.props;
     e.preventDefault();
-    const {element,updateProductFromState}=this.props;
-    
+    const { element, updateProductFromState } = this.props;
+
     axios
       .put(`http://localhost:8080/api/v1/products/${element.id}`, this.state)
-      .then((res)=>{
-        updateProductFromState(element.id,res.data.data[0])
+      .then((res) => {
+        updateProductFromState(element.id, res.data.data[0]);
+        toggelEdit();
       })
       .catch((err) => console.log(err));
-      
-      toggelEdit()
   };
 
   render() {
-    const {isEdit}=this.props;
-   
     return (
       <Fragment>
-{isEdit ? 
         <div className="update-container">
           <form className="update-form" onSubmit={this.editProduct}>
             <label>
@@ -85,15 +80,12 @@ class UpdateProduct extends React.Component {
               <option value="electronics">electronics</option>
               <option value="women clothing">women clothing</option>
             </select>
-            <button className="add-btn" type="submit" >
+            <button className="add-btn" type="submit">
               {' '}
               submit
             </button>
           </form>
-        </div>: null}
-
-
-
+        </div>
       </Fragment>
     );
   }

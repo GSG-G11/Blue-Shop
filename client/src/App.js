@@ -2,8 +2,8 @@ import { Component } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
-import Nav from './component/Nav';
-import Landing from './component/Landing';
+import Nav from './component/navbar/Nav';
+import Landing from './component/landing/Landing';
 import Login from './component/Login/Login';
 import Cart from './component/cart/Cart';
 import AddProduct from './component/addProduct/AddProduct';
@@ -74,15 +74,19 @@ class App extends Component {
     });
   };
   updateProductFromState = (id, updated) => {
-    console.log(id,updated)
-    this.setState((prevState) => {
-      
-      return {
-        products: prevState.products.map((ele) =>
-          ele.id === id ? updated : ele
-        ),
-      };
-    },()=>{console.log(this.state)});
+    console.log(id, updated);
+    this.setState(
+      (prevState) => {
+        return {
+          products: prevState.products.map((ele) =>
+            ele.id === id ? updated : ele
+          ),
+        };
+      },
+      () => {
+        console.log(this.state);
+      }
+    );
   };
 
   addProductToState = (newProduct) => {
@@ -144,7 +148,7 @@ class App extends Component {
             <Route
               path="/product"
               element={
-                <AddProduct addProductToState={this.addProductToState}  />
+                <AddProduct addProductToState={this.addProductToState} />
               }
             />
           </Routes>
