@@ -6,7 +6,7 @@ import Nav from './component/navbar/Nav';
 import Landing from './component/landing/Landing';
 import Login from './component/Login/Login';
 import Cart from './component/cart/Cart';
-import AddProduct from './component/addProduct/AddProduct';
+import AddProduct from './component/AddProduct/AddProduct';
 import ProductPage from './component/productpage/ProductPage';
 import NotFound from './component/Errors/NotFound';
 
@@ -25,6 +25,7 @@ class App extends Component {
     username:'',
     password:'',
     loggedUser: '',
+    toDeleteId:0,
   };
   componentDidMount() {
     axios
@@ -32,7 +33,6 @@ class App extends Component {
       .then((res) => this.setState({ products: res.data.data, errorMessage:'' }))
       .catch((err) => this.setState({ errorMessage: err.response.statusText }));
     const user = JSON.parse(localStorage.getItem('user')) || [];
-    
     this.setState({ logged: user.length === 0 ? false : true, loggedUser: user.name });
   }
 
@@ -68,11 +68,12 @@ class App extends Component {
   deleteProduct = (id) => {
     console.log(id);
     const products = JSON.parse(localStorage.getItem('products')) || [];
-    const newArr = products.filter((e) => e.id !== id);
+    const newArr = products.filter((e) => e.id !== +id);
     localStorage.setItem('products', JSON.stringify(newArr));
-    this.setState({ deleteMessage: 'Product deleted' });
+    this.setState({ deleteMessage: 'Product deleted', show: false });
   };
-  confirmDelete = () => this.setState({ show: true });
+  confirmDelete = (e) => this.setState({ show: true , toDeleteId: e.target.id});
+  hide = () => this.setState({ show: false });
 
   deleteProductFromState = (id) => {
     this.setState((prevState) => {
@@ -118,7 +119,7 @@ class App extends Component {
           <Routes>
             <Route
               path="/"
-              element={<Landing  actions={actions} values={this.state} />}
+              element={<Landing actions={actions} values={this.state} />}
             />
             <Route
               path="/login"
@@ -139,6 +140,8 @@ class App extends Component {
                   deleteProduct={this.deleteProduct}
                   confirm={this.confirmDelete}
                   show={this.state.show}
+                  toDeleteId={this.state.toDeleteId}
+                  hide={this.hide}
                 />
               }
             />

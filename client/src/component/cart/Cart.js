@@ -1,17 +1,14 @@
 import React from 'react';
-import SweetAlert from 'sweetalert-react';
-import 'sweetalert/dist/sweetalert.css';
-import './Cart.css'
+import './Cart.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-faTrash
-} from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
+import Delete from './DeleteConfirm';
 
 const Cart = (props) => {
   const productsLs = JSON.parse(localStorage.getItem('products')) || [];
 
-  const { deleteProduct, show, confirm } = props;
+  const { deleteProduct, show, confirm, toDeleteId, hide } = props;
 
   return (
     <>
@@ -19,32 +16,32 @@ const Cart = (props) => {
         {productsLs.map((product, index) => {
           return (
             <div className='card' key={index}>
-            <div className="card-img">
-                  <img
-                    className="card-image"
-                    src={product.image}
-                    alt={product.name}
-                  />
-                </div>
-                <div className='product-info'>
-              <p className='card-name'>{product.name}</p>
-              <p className='card-price'>{product.price}</p>
-
-                </div>
+              <div className='card-img'>
+                <img
+                  className='card-image'
+                  src={product.image}
+                  alt={product.name}
+                />
+              </div>
+              <div className='product-info'>
+                <p className='card-name'>{product.name}</p>
+                <p className='card-price'>{product.price}</p>
+              </div>
 
               <div className='delete-btn-div'>
-              <button className='delete-btn' id={product.id} onClick={confirm}>
-              <FontAwesomeIcon  icon={faTrash} />
-              </button>
+                <button
+                  className='delete-btn'
+                  id={product.id}
+                  onClick={confirm}
+                >
+                  <FontAwesomeIcon icon={faTrash} />
+                </button>
               </div>
-              <SweetAlert
+              <Delete
+                id={toDeleteId}
                 show={show}
-                warning
-                showCancel
-                confirmBtnText='Yes, delete it!'
-                confirmBtnBsStyle='danger'
-                title='Are you sure?'
-                onConfirm={() => deleteProduct(product.id)}
+                deleteProduct={deleteProduct}
+                hide={hide}
               />
             </div>
           );
