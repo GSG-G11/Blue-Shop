@@ -21,7 +21,7 @@ class UpdateProduct extends React.Component {
     const { element, updateProductFromState } = this.props;
 
     axios
-      .put(`http://localhost:8080/api/v1/products/${element.id}`, this.state)
+      .put(`/api/v1/products/${element.id}`, this.state)
       .then((res) => {
         updateProductFromState(element.id, res.data.data[0]);
         toggelEdit();
