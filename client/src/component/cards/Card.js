@@ -3,7 +3,7 @@ import "./card.css";
 import { Link } from "react-router-dom";
 class Card extends React.Component {
   render() {
-    const { min, max, category, addProduct, products, search } = this.props;
+    const { min, max, category, addProduct, products, search ,logged} = this.props;
     return products.length ? (
       products
         .filter(
@@ -32,7 +32,7 @@ class Card extends React.Component {
                   </div>
                   <div className="actions">
                     <p className="card-price">${element.price}</p>
-                    <button
+                    {logged? null:<button
                       className="add-btn"
                       id={element.id}
                       onClick={(e) => {
@@ -40,7 +40,8 @@ class Card extends React.Component {
                       }}
                     >
                       + Add to cart
-                    </button>
+                    </button>}
+
                   </div>
                 </div>
               </div>

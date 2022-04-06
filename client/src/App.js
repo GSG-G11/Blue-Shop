@@ -6,7 +6,7 @@ import Nav from './component/navbar/Nav';
 import Landing from './component/landing/Landing';
 import Login from './component/Login/Login';
 import Cart from './component/cart/Cart';
-import AddProduct from './component/AddProduct/AddProduct';
+import AddProduct from './component/addProduct/AddProduct';
 import ProductPage from './component/productpage/ProductPage';
 import NotFound from './component/Errors/NotFound';
 
@@ -32,6 +32,7 @@ class App extends Component {
       .then((res) => this.setState({ products: res.data.data, errorMessage:'' }))
       .catch((err) => this.setState({ errorMessage: err.response.statusText }));
     const user = JSON.parse(localStorage.getItem('user')) || [];
+    
     this.setState({ logged: user.length === 0 ? false : true, loggedUser: user.name });
   }
 
@@ -117,7 +118,7 @@ class App extends Component {
           <Routes>
             <Route
               path="/"
-              element={<Landing actions={actions} values={this.state} />}
+              element={<Landing  actions={actions} values={this.state} />}
             />
             <Route
               path="/login"

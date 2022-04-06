@@ -1,6 +1,11 @@
 import React from 'react';
 import SweetAlert from 'sweetalert-react';
 import 'sweetalert/dist/sweetalert.css';
+import './Cart.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+faTrash
+} from '@fortawesome/free-solid-svg-icons';
 
 
 const Cart = (props) => {
@@ -10,20 +15,28 @@ const Cart = (props) => {
 
   return (
     <>
-      <div className='cart' key='1'>
+      <div className='cart-container' key='1'>
         {productsLs.map((product, index) => {
           return (
             <div className='card' key={index}>
-              <img
-                className='card-image'
-                src={product.image}
-                alt={product.name}
-              />
-              <h1 className='card-name'>{product.name}</h1>
+            <div className="card-img">
+                  <img
+                    className="card-image"
+                    src={product.image}
+                    alt={product.name}
+                  />
+                </div>
+                <div className='product-info'>
+              <p className='card-name'>{product.name}</p>
               <p className='card-price'>{product.price}</p>
+
+                </div>
+
+              <div className='delete-btn-div'>
               <button className='delete-btn' id={product.id} onClick={confirm}>
-                delete
+              <FontAwesomeIcon  icon={faTrash} />
               </button>
+              </div>
               <SweetAlert
                 show={show}
                 warning

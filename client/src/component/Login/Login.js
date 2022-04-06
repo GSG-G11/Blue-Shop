@@ -1,25 +1,28 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import "./login.css"
 function Login({action:{login, change}}) {
     const navigate = useNavigate()
     return ( 
         <>
-        <h1> Login Page </h1>
-        <div className="Login">
-            <div className="form">
-                <form onSubmit={(e)=>{login(e);navigate('/',{replace:true})}} >
+       
+        
+            <div className="login-container">
+                <form className="login-form" onSubmit={(e)=>{login(e);navigate('/',{replace:true})}} >
                     <label>
                         Username:
-                        <input onChange={change} name='username' type='text' placeholder='username' required/>
                     </label>
+                        <input onChange={change} name='username' type='text' placeholder='username' required/>
                     <label>
                         Password:
-                        <input onChange={change} name='password' type='password' placeholder='username' required />
                     </label>
-                   <button type='submit'>Login</button>
+                        <input onChange={change} name='password' type='password' placeholder='password' required />
+                     
+                   
+                   <div className='login-btn-div'><button className='login-btn' type='submit'>Login</button></div>
                 </form>
             </div>
-        </div>
+      
         </>
     
      );

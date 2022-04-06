@@ -37,6 +37,7 @@ function Nav({ logged, action, loggedUser, logOut }) {
         <>
           {' '}
           <div className='navbar-actions'>
+          <p className='logged-user'>{loggedUser}</p>
             <Link to={'/product'}>
               {' '}
               <div className='navbar-icon-container'>
@@ -53,10 +54,10 @@ function Nav({ logged, action, loggedUser, logOut }) {
               <div className='navbar-icon-container'>
                 <FontAwesomeIcon onClick={logOut} icon={faDoorOpen} />
               </div>
-            <Link to={'/'}>
-                <p className='logged-user'>{loggedUser}</p>
-              {/* <p className="navbar-icon-text">Home</p> */}
-            </Link>
+           
+                
+             
+           
           </div>
         </>
       ) : (
