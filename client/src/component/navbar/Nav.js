@@ -8,44 +8,53 @@ import {
   faMagnifyingGlass,
   faPlus,
   faHouse,
+  faDoorOpen,
 } from '@fortawesome/free-solid-svg-icons';
 
-function Nav({ logged, action }) {
+
+function Nav({ logged, action, loggedUser, logOut }) {
   return (
-    <div className="navbar">
-      <div className="logo">
-        <div className="logo-box"></div>
-        <Link className="logo-text" to={'/'}>
-          <span className="logo-text-white">Blue</span>{' '}
-          <span className="logo-text-blue">Shop</span>
+    <div className='navbar'>
+      <div className='logo'>
+        <div className='logo-box'></div>
+        <Link className='logo-text' to={'/'}>
+          <span className='logo-text-white'>Blue</span>{' '}
+          <span className='logo-text-blue'>Shop</span>
         </Link>
       </div>
-      <div className="navbar-search">
+      <div className='navbar-search'>
         <input
-          type="text"
-          name="search"
+          type='text'
+          name='search'
           onChange={action}
-          placeholder="search"
+          placeholder='search'
         />
-        <div className="search-icon-container">
+        <div className='search-icon-container'>
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </div>
       </div>
       {logged ? (
         <>
           {' '}
-          <div className="navbar-actions">
+          <div className='navbar-actions'>
             <Link to={'/product'}>
               {' '}
-              <div className="navbar-icon-container">
+              <div className='navbar-icon-container'>
                 <FontAwesomeIcon icon={faPlus} />
               </div>
               {/* <p className="navbar-icon-text">Add Product</p> */}
             </Link>
-            <Link to={'/home'}>
-              <div className="navbar-icon-container">
+            <Link to={'/'}>
+              <div className='navbar-icon-container'>
                 <FontAwesomeIcon icon={faHouse} />
               </div>
+              {/* <p className="navbar-icon-text">Home</p> */}
+            </Link>
+              <div className='navbar-icon-container'>
+                <FontAwesomeIcon onClick={logOut} icon={faDoorOpen} />
+              </div>
+            <Link to={'/'}>
+                <p className='logged-user'>{loggedUser}</p>
               {/* <p className="navbar-icon-text">Home</p> */}
             </Link>
           </div>
@@ -53,15 +62,15 @@ function Nav({ logged, action }) {
       ) : (
         <>
           {' '}
-          <div className="navbar-actions">
+          <div className='navbar-actions'>
             <Link to={'/login'}>
-              <div className="navbar-icon-container">
+              <div className='navbar-icon-container'>
                 <FontAwesomeIcon icon={faArrowRightToBracket} />
               </div>
               {/* <p className="navbar-icon-text">Login</p> */}
             </Link>
             <Link to={'/cart'}>
-              <div className="navbar-icon-container">
+              <div className='navbar-icon-container'>
                 <FontAwesomeIcon icon={faCartPlus} />
               </div>
               {/* <p className="navbar-icon-text">Cart</p> */}

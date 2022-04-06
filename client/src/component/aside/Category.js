@@ -19,7 +19,7 @@ const Category = ({ setCategory, category: currentCategory }) => {
             {categories.map((category, index) => (
                 <p key={index}>
                   <input
-                    checked={category === currentCategory}
+                    // checked={category === currentCategory}
                     type="radio"
                     name="category"
                     value={category}

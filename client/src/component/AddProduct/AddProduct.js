@@ -53,7 +53,7 @@ class AddProduct extends React.Component {
     return (
       <Fragment>
         <div className="form-container">
-          <form className="add-form" onSubmit={this.AddProduct}>
+          <form className="add-form" onSubmit={(e)=>{this.AddProduct(e)}}>
             <div className="input-label-div">
               <label>Name:</label>
               <input

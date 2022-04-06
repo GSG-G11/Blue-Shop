@@ -1,9 +1,12 @@
 import React from 'react';
 import SweetAlert from 'sweetalert-react';
+import 'sweetalert/dist/sweetalert.css';
+
+
 const Cart = (props) => {
   const productsLs = JSON.parse(localStorage.getItem('products')) || [];
 
-  const { deleteProduct,show,confirm } = props;
+  const { deleteProduct, show, confirm } = props;
 
   return (
     <>
@@ -18,20 +21,17 @@ const Cart = (props) => {
               />
               <h1 className='card-name'>{product.name}</h1>
               <p className='card-price'>{product.price}</p>
-              <button
-                className='delete-btn'
-                id={product.id}
-                onClick={confirm}
-              >
+              <button className='delete-btn' id={product.id} onClick={confirm}>
                 delete
               </button>
               <SweetAlert
                 show={show}
-                title='Demo'
-                text='SweetAlert in React'
-
+                warning
+                showCancel
+                confirmBtnText='Yes, delete it!'
+                confirmBtnBsStyle='danger'
+                title='Are you sure?'
                 onConfirm={() => deleteProduct(product.id)}
-
               />
             </div>
           );

@@ -6,7 +6,7 @@ import Nav from './component/navbar/Nav';
 import Landing from './component/landing/Landing';
 import Login from './component/Login/Login';
 import Cart from './component/cart/Cart';
-import AddProduct from './component/addProduct/AddProduct';
+import AddProduct from './component/AddProduct/AddProduct';
 import ProductPage from './component/productpage/ProductPage';
 
 class App extends Component {
@@ -21,6 +21,9 @@ class App extends Component {
     show: false,
     errorMessage: '',
     search: '',
+    username:'',
+    password:'',
+    loggedUser: '',
   };
   componentDidMount() {
     axios
@@ -28,7 +31,7 @@ class App extends Component {
       .then((res) => this.setState({ products: res.data.data }))
       .catch((err) => this.setState({ errorMessage: err.response.statusText }));
     const user = JSON.parse(localStorage.getItem('user')) || [];
-    this.setState({ logged: user.length === 0 ? false : true });
+    this.setState({ logged: user.length === 0 ? false : true, loggedUser: user.name });
   }
 
   onSetValue = (e) => {
@@ -61,6 +64,7 @@ class App extends Component {
   };
 
   deleteProduct = (id) => {
+    console.log(id);
     const products = JSON.parse(localStorage.getItem('products')) || [];
     const newArr = products.filter((e) => e.id !== id);
     localStorage.setItem('products', JSON.stringify(newArr));
@@ -94,6 +98,10 @@ class App extends Component {
       return { products: [...prevState.products, newProduct] };
     });
   };
+  logOut = () => {
+    localStorage.removeItem('user');
+    this.setState({ logged: false });
+  }
 
   render() {
     const actions = {
@@ -104,7 +112,7 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-          <Nav action={this.inputSearchHandler} logged={this.state.logged} />
+          <Nav action={this.inputSearchHandler} logOut={this.logOut} loggedUser={this.state.loggedUser && this.state.loggedUser} logged={this.state.logged} />
           <Routes>
             <Route
               path="/"
@@ -116,7 +124,7 @@ class App extends Component {
                 <Login
                   action={{
                     login: this.login,
-                    change: this.inputChangeHandler,
+                    change: this.inputSearchHandler,
                   }}
                 />
               }
@@ -128,6 +136,7 @@ class App extends Component {
                   products={this.state.products}
                   deleteProduct={this.deleteProduct}
                   confirm={this.confirmDelete}
+                  show={this.state.show}
                 />
               }
             />

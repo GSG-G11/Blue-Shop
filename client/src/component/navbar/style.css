@@ -92,3 +92,35 @@
 .navbar .navbar-actions .navbar-icon-container svg {
   color: #fff;
 }
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+  }
+  .navbar .logo {
+    margin-bottom: 20px;
+  }
+  .navbar .navbar-search {
+    margin-bottom: 20px;
+  }
+  .navbar .navbar-actions {
+    margin-bottom: 20px;
+  }
+}
+.logged-user{
+  background-color:#518fd8 ;
+  color: #fff;
+  border-radius: 5px;
+  padding:0 8px;
+}
+@media (max-width: 576px) {
+  .navbar .logo {
+    margin-bottom: 20px;
+  }
+  .navbar .navbar-search {
+    margin-bottom: 20px;
+  }
+  .navbar .navbar-actions {
+    margin-bottom: 20px;
+  }
+}
