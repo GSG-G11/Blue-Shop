@@ -1,7 +1,7 @@
 # Blue Shop 
 
 
- - [Heroku link](https://blueshop11.herokuapp.com/https://blueshop11.herokuapp.com//)
+ - [Heroku link](https://blueshop11.herokuapp.com)
 
  - [Figma link](https://www.figma.com/file/dyxlK8Vwgm5melNWsphtjY/Untitled?node-id=1%3A2)
 
