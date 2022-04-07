@@ -1,36 +1,26 @@
 .cart-container {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .cart-container .delete-btn-div {
-    display: flex;
-    justify-content: flex-end;
-
-
-
+  display: flex;
+  justify-content: flex-end;
 }
 
-.cart-container .product-info{
-
-padding: 5px;
+.cart-container .product-info {
+  padding: 5px;
 }
-
-
-
 
 .cart-container .delete-btn {
-
-    border: none;
-    height: 32px;
-    width: 20%;
-    padding: 0 10px;
-    background: #ee2020;
-    cursor: pointer;
-    border-radius: 6px;
-    color: #fff;
-margin:24px 5px 5px 0;
-
+  border: none;
+  height: 32px;
+  width: 20%;
+  padding: 0 10px;
+  background: #ee2020;
+  cursor: pointer;
+  border-radius: 6px;
+  color: #fff;
+  margin: 0 5px 5px 0;
 }
