@@ -8,7 +8,7 @@ import Nav from './component/navbar/Nav';
 import Landing from './component/landing/Landing';
 import Login from './component/Login/Login';
 import Cart from './component/cart/Cart';
-import AddProduct from './component/addProduct';
+// import AddProduct from './component/addProduct';
 import ProductPage from './component/productpage/ProductPage';
 import NotFound from './component/Errors/NotFound';
 
@@ -184,12 +184,12 @@ class App extends Component {
                 />
               }
             />
-            <Route
+            {/* <Route
               path="/product"
               element={
                 <AddProduct addProductToState={this.addProductToState} />
               }
-            />
+            /> */}
             <Route path="*" element={<NotFound />} />
           </Routes>
           <ToastContainer />
