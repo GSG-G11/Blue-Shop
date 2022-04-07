@@ -1,4 +1,4 @@
-# Blue Shop :shopping_bags: 
+# Blue Shop 
 
 
  - [Heroku link](https://blueshop11.herokuapp.com/https://blueshop11.herokuapp.com//)
