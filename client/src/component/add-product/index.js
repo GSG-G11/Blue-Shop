@@ -4,7 +4,7 @@ import './style.css';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-class AddProduct extends React.Component {
+export class AddProduct extends React.Component {
   state = {
     name: '',
     price: '',
