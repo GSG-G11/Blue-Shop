@@ -10,7 +10,7 @@ let ssl = false;
 
 if (NODE_ENV === 'dev') {
   dbURl = DEV_DB_URL;
-} else if (NODE_ENV === 'start') {
+} else {
   ssl = { rejectUnauthorized: false };
 }
 

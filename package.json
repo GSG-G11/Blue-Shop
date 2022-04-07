@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=start node server/index.js",
+    "start": "node server/index.js",
     "dev": " cross-env NODE_ENV=dev nodemon server/index.js",
     "client": "cd client && npm run start",
     "heroku-postbuild": "cd client && npm i && npm run build"
